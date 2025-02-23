@@ -1,0 +1,264 @@
+En Odoo, cuando defines modelos de datos (por ejemplo, modelos para facturas, clientes, productos, etc.), a menudo necesitas relacionar un modelo con otro. Para lograr esto, Odoo ofrece varios tipos de campos relacionales. Los más comunes son:
+
+1. **many2one**  
+2. **one2many**  
+3. **many2many**  
+
+A continuación, encontrarás una explicación clara de cada uno de ellos y cómo se relacionan entre sí.
+
+---
+
+## 1. Campo `many2one`
+
+### Descripción
+- Un campo `many2one` crea un vínculo hacia **un** registro de **otro** modelo.
+- Se utiliza cuando **muchos** registros (del modelo actual) pueden estar relacionados con **un** único registro (del otro modelo).
+
+### Ejemplo
+Imagina que tienes un modelo de “Orden de Venta” (`sale.order`) y un modelo de “Cliente” (`res.partner`).  
+- Dentro del modelo “Orden de Venta”, podrías tener un campo llamado `partner_id` que es de tipo `many2one` apuntando al modelo `res.partner`.  
+- Esto significa que **para cada** Orden de Venta, se especifica exactamente **un** Cliente.
+
+En código (definición de campos en Odoo 14+):
+```python
+class SaleOrder(models.Model):
+    _name = 'sale.order'
+    partner_id = fields.Many2one('res.partner', string="Cliente")
+```
+
+### ¿Por qué se llama “many2one”?
+- Porque desde la perspectiva del modelo “Orden de Venta”, hay muchos pedidos que pueden apuntar a un solo cliente.  
+- “muchos a uno” = muchos SaleOrders -> un solo Partner.
+
+---
+
+## 2. Campo `one2many`
+
+### Descripción
+- Un campo `one2many` crea una relación donde **un** registro (del modelo actual) puede estar asociado a **muchos** registros de otro modelo.
+- Este campo se define desde el “lado padre” de la relación.  
+- Funciona en conjunto con un `many2one` en el otro modelo.
+
+### Ejemplo
+Continuemos con el ejemplo anterior:
+- En el modelo “Cliente” (`res.partner`), podrías querer ver todas las Órdenes de Venta asociadas a ese cliente.
+- Para lograrlo, en `res.partner` se define un campo `one2many` que apunta al modelo `sale.order`.
+- Este campo `one2many` debe saber cuál es el campo `many2one` en `sale.order` que lo referencia, en este caso `partner_id`.
+
+En código:
+```python
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+    sale_order_ids = fields.One2many(
+        'sale.order',      # El modelo al que hace referencia
+        'partner_id',      # El campo many2one en sale.order que apunta aquí
+        string="Órdenes de Venta"
+    )
+```
+
+### ¿Por qué se llama “one2many”?
+- Porque desde la perspectiva del modelo “Cliente”, un cliente está asociado con muchas órdenes de venta.  
+- “uno a muchos” = un Partner -> muchos SaleOrders.
+
+---
+
+## 3. Campo `many2many`
+
+### Descripción
+- Un campo `many2many` crea una relación de varios a varios entre dos modelos.
+- **Cualquier** registro de un modelo puede estar vinculado a **muchos** registros de otro modelo, y a la vez **cualquier** registro del segundo modelo puede estar vinculado a **muchos** del primero.
+- Para gestionar esta relación, Odoo crea automáticamente (o necesita) una tabla intermedia (conocida como tabla de relación).  
+
+### Ejemplo
+Piensa en un sistema de gestión de cursos (`course`) y estudiantes (`student`):
+- Un estudiante puede estar en **varios** cursos.
+- Un curso puede tener **muchos** estudiantes inscritos.  
+- Se necesita un `many2many` para unir estos dos modelos, y se suele utilizar una tabla intermedia para almacenar las relaciones.
+
+En código:
+```python
+class Course(models.Model):
+    _name = 'academy.course'
+    name = fields.Char(string="Nombre del Curso")
+    student_ids = fields.Many2many(
+        'academy.student',   # modelo con el que se relaciona
+        'course_student_rel',# nombre de la tabla relacional
+        'course_id',         # campo que en la tabla relacional representa este modelo
+        'student_id',        # campo que en la tabla relacional representa el otro modelo
+        string="Estudiantes"
+    )
+
+class Student(models.Model):
+    _name = 'academy.student'
+    name = fields.Char(string="Nombre del Estudiante")
+    course_ids = fields.Many2many(
+        'academy.course',
+        'course_student_rel', # debe ser el mismo nombre de la tabla relacional
+        'student_id',         # campo que representa este modelo
+        'course_id',          # campo que representa el otro modelo
+        string="Cursos"
+    )
+```
+
+- En la tabla relacional `course_student_rel` se guardan pares de IDs: `(course_id, student_id)`.  
+
+### ¿Por qué se llama “many2many”?
+- Porque varios registros (courses) se pueden relacionar con varios registros (students), sin que exista exclusividad desde ninguno de los lados.
+
+---
+
+## Resumen y diferencias clave
+
+1. **many2one**:
+   - Se usa para vincular muchos registros de un modelo a un solo registro de otro modelo.
+   - Físicamente, en la base de datos, se traduce en un campo “foreign key” en la tabla del modelo actual.
+
+2. **one2many**:
+   - Representa la contraparte de un `many2one`.
+   - Permite ver todos los registros de otro modelo que apuntan al registro actual.
+   - A nivel de base de datos no crea un campo nuevo en la tabla del modelo “padre”, sino que se basa en el campo “hijo” (many2one) para establecer la relación.
+
+3. **many2many**:
+   - Crea una relación bidireccional de varios a varios.
+   - Necesita de una tabla extra para almacenar las parejas de IDs.
+   - Permite asignar múltiples registros de un modelo a múltiples registros de otro.
+
+---
+
+## Ejemplo práctico y visual
+
+Imagina una relación entre Empleados y Departamentos:
+
+- **many2one**: Cada empleado pertenece a un departamento.  
+  - En el modelo `hr.employee`, tendríamos algo como `department_id = fields.Many2one('hr.department')`.  
+
+- **one2many**: Un departamento puede tener varios empleados.  
+  - En el modelo `hr.department`, podemos ver un campo tipo `one2many` que apunte al modelo `hr.employee` y al campo `department_id`.
+
+- **many2many**: Un empleado puede tener varias habilidades (skills) y una misma habilidad (skill) puede pertenecer a muchos empleados.  
+  - Ambas tablas (empleado y skill) se relacionarían a través de un `many2many` con una tabla intermedia (por ejemplo, `employee_skill_rel`).
+
+---
+
+## Conclusión
+
+- Estos tres tipos de campos (`many2one`, `one2many`, `many2many`) son esenciales para modelar las relaciones en Odoo.  
+- Entender bien cuál aplicar depende de la **naturaleza de la relación** entre los modelos.  
+  - “muchos a uno” (many2one)  
+  - “uno a muchos” (one2many)  
+  - “muchos a muchos” (many2many).
+
+Con estos conceptos claros, podrás diseñar modelos de datos en Odoo de forma más efectiva y aprovechar toda la potencia del framework.
+
+
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+      <!-- Add you code here -->
+      <!-- model.name form view -->
+      <record id="subscription.view_form" model="ir.ui.view">
+        <field name="name">Formulario de subscripción</field>
+        <field name="model">subscription.subscription</field>
+        <field name="arch" type="xml">
+          <form string="Añadir subscripción">
+            <sheet>
+              <group>
+                <!-- Add your fields here -->
+                <field name="name" string="Nombre"/>
+                <field name="customer_id" string="Identificador de cliente"/>
+                <field name="subscription_code" string="Código de subscripcion"/>
+              </group>
+              <notebook>
+                <page string="Fechas" name="dates">
+                  <group>
+                    <field name="start_date" string="Fecha de comienzo"/>
+                    <field name="end_date" string="Fecha de finalización"/>
+                    <field name="renewal_date" string="Fecha de renovación"/>
+                  </group>
+                </page>
+                <page name="renewal" string="Renovación">
+                  <group name="renewal_status" string="Estado renovación">
+                    <field name="status" string="Estado"/>
+                    <field name="is_renewable" string="Renovable"/>
+                    <field name="auto_renewal" string="Auto-renovable"/>
+                  </group>
+                  <group name="renewal_price" string="Precio renovación">
+                    <field name="price" string="Precio"/>
+                  </group>
+                </page>
+                <page name="usage" string="Uso" cols="2">
+                  <group>
+                    <field name="usage_limit" 
+                      string="Límite de uso"
+                      colspan="2"/>
+                    <field name="current_usage" 
+                      string="Uso actual"
+                      colspan="2"/>
+                    <field name="use_percent"
+                      string="Uso porcentual"
+                      colspan="2"/>
+                     </group>
+                </page>
+              </notebook>
+            </sheet>
+            
+          </form>
+        </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="subscription.action_form">
+        <field name="name">Añadir subscripción</field>
+        <field name="res_model">subscription.subscription</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="subscription.view_form"/>
+      </record>
+    </data>
+</odoo>
+
+
+
+
+Constraints:
+
+_sql_constraints = [
+    # 1. La combinación de producto y cliente debe ser única.
+    ('unique_product_customer', 'unique(product_id, customer_id)', 
+     'La combinación de producto y cliente debe ser única'),
+
+    # 2. La fecha de fin debe ser posterior a la fecha de inicio (o nula si la garantía sigue activa).
+    ('check_dates', 'CHECK(end_date IS NULL OR end_date > start_date)', 
+     'La fecha de fin debe ser posterior a la fecha de inicio o nula si aún no ha finalizado'),
+
+    # 3. El nombre debe tener entre 3 y 100 caracteres.
+    ('check_name_length', 'CHECK(length(name) >= 3 AND length(name) <= 100)', 
+     'El nombre debe tener entre 3 y 100 caracteres'),
+
+    # 4. El tipo de garantía debe ser uno de los valores permitidos.
+    ('check_warranty_type', "CHECK(warranty_type IN ('fabricante', 'distribuidor', 'ampliada'))", 
+     'El tipo de garantía debe ser uno de los valores permitidos'),
+
+    # 5. El estado debe ser uno de los valores permitidos.
+    ('check_status', "CHECK(status IN ('activa', 'expirada', 'anulada'))", 
+     'El estado debe ser uno de los valores permitidos'),
+
+    # 6. Si la garantía está activa, la fecha de fin debe ser nula o, de haberse definido, posterior a la fecha actual.
+    ('check_active_end_date', "CHECK(status <> 'activa' OR end_date IS NULL OR end_date > CURRENT_DATE)", 
+     'Si la garantía está activa, la fecha de finalización debe ser nula o posterior a la fecha actual'),
+
+    # 7. Para garantías ampliadas, el producto debe estar definido.
+    ('check_ampliada_product', "CHECK(warranty_type <> 'ampliada' OR product_id IS NOT NULL)", 
+     'Para garantías ampliadas, el producto debe estar definido'),
+
+    # 8. El código de garantía debe ser alfanumérico.
+    # (El operador "~" es específico de PostgreSQL)
+    ('check_warranty_code_format', "CHECK(warranty_code ~ '^[A-Za-z0-9]+$')", 
+     'El código de garantía debe ser alfanumérico'),
+
+    # 9. La fecha de inicio no puede ser futura.
+    ('check_start_date', "CHECK(start_date <= CURRENT_DATE)", 
+     'La fecha de inicio no puede ser futura'),
+
+    # 10. Si la garantía está expirada, se debe definir la fecha de fin.
+    ('check_expired_end_date', "CHECK(status <> 'expirada' OR end_date IS NOT NULL)", 
+     'Si la garantía está expirada, se debe definir la fecha de finalización')
+]

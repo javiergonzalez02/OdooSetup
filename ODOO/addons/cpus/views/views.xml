@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="cpus.list">
+            <field name="name">cpus list</field>
+            <field name="model">cpus.cpu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="manufacturer"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="cpus.action_window">
+            <field name="name">cpus window</field>
+            <field name="res_model">cpus.cpu</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- server action to the one above -->
+        <record model="ir.actions.server" id="cpus.action_server">
+            <field name="name">cpus server</field>
+            <field name="model_id" ref="model_cpus_cpu"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="cpus" id="cpus.menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="Menu 1" id="cpus.menu_1" parent="cpus.menu_root"/>
+        <menuitem name="Menu 2" id="cpus.menu_2" parent="cpus.menu_root"/>
+        <!-- actions -->
+        <menuitem name="List" id="cpus.menu_1_list" parent="cpus.menu_1"
+                  action="cpus.action_window"/>
+        <menuitem name="Server to list" id="cpus" parent="cpus.menu_2"
+                  action="cpus.action_server"/>
+    </data>
+</odoo>

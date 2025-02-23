@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+    <!-- Top menu item -->
+    <menuitem name="ing" id="ing.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Iker Nieto" id="ing.main_menu" parent="ing.menu_root"/>
+    <!-- actions -->
+    <menuitem name="Productos" id="ing.products_menu" parent="ing.main_menu"
+              action="ing.action_products_list"/>
+    <menuitem name="Garantias" id="ing.warranties_menu" parent="ing.main_menu"
+              action="ing.action_warranties_list"/>
+    <menuitem name="Reclamaciones" id="ing.claims_menu" parent="ing.main_menu"
+              action="ing.action_claims_list"/>
+      
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=1234 -e POSTGRES_DB=postgres --name db -v ./dataPG:/var/lib/postgresql/data postgres:14
+
+docker run -d -p 8069:8069 --name odooprod --user="root" --link db:db -v .\volumesOdoo\addons:/mnt/extra/addons -v ".\volumesOdoo\firestore:/var/lib/firestore" -v .\volumesOdoo\sessions:/var/lib/sessions -t odoo:16
+
+
+// Crea un módulo
+odoo scaffold lista_tareas /mnt/extra-addons

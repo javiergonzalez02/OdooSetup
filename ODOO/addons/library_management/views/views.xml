@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_library_author_tree">
+            <field name="name">library_author.tree</field>
+            <field name="model">library_management.library_author</field>
+            <field name="arch" type="xml">
+                <tree string="Authors">
+                    <field name="nombre_autor"/>
+                    <field name="fecha_nacimiento"/>
+                    <field name="biografia"/>
+                    <field name="libros"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_library_book_tree">
+            <field name="name">library_book.tree</field>
+            <field name="model">library_management.library_book</field>
+            <field name="arch" type="xml">
+                <tree string="Books">
+                    <field name="nombre_libro"/>
+                    <field name="autor"/>
+                    <field name="fecha_publicacion"/>
+                    <field name="isbn"/>
+                    <field name="sinopsis"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem name="Library Management" id="library_management.menu_root"/>
+
+        <menuitem name="Autores" id="library_management.menu_authors" parent="library_management.menu_root"/>
+
+        <menuitem name="Books" id="library_management.menu_books" parent="library_management.menu_root"/>
+
+        <record id="action_library_author" model="ir.actions.act_window">
+            <field name="name">Authors</field>
+            <field name="res_model">library_management.library_author</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Authors" id="library_management.menu_authors_action" parent="library_management.menu_authors" action="action_library_author"/>
+
+        <record id="action_library_book" model="ir.actions.act_window">
+            <field name="name">Books</field>
+            <field name="res_model">library_management.library_book</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Books" id="library_management.menu_books_action" parent="library_management.menu_root" action="action_library_book"/>
+    </data>
+</odoo>
