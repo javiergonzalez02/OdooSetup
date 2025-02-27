@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="ing.products_list">
+      <field name="name">ing list</field>
+      <field name="model">ing.product</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="name"/>
+          <field name="warranties"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="ing.action_products_list">
+      <field name="name">Vista de productos</field>
+      <field name="res_model">ing.product</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    </data> 
+</odoo>

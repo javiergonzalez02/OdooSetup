@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="final_jga.projects_list">
+            <field name="name">final_jga list</field>
+            <field name="model">final_jga.project</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom"
+                      decoration-success="priority=='alta'"
+                      decoration-warning="priority=='media'"
+                      decoration-danger="priority=='baja'">
+                    <field name="name"/>
+                    <field name="manager_id"/>
+                    <field name="tasks_id"/>
+                    <field name="priority" attrs="{'readonly': [('active', '!=', True)]}"/>
+                    <field name="progress" attrs="{'readonly': [('active', '!=', True)]}"/>
+                    <field name="customer_id"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="final_jga.action_projects_list">
+            <field name="name">Vista de proyectos</field>
+            <field name="res_model">final_jga.project</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

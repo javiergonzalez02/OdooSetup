@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+      <data>
+      <!-- explicit list view definition -->
+      <record model="ir.ui.view" id="ing.claims_list">
+        <field name="name">ing list</field>
+        <field name="model">ing.claim</field>
+        <field name="arch" type="xml">
+          <tree editable="bottom">
+            <field name="name"/>
+            <field name="description"/>
+            <field name="status"/>
+            <button name="resolve_claim"
+              type="object"
+              string="Resolver"
+              class='btn-success'
+              icon='fa-check'
+              attrs="{'invisible': [('status', '!=', 'abierta')]}"/>
+            <button name="unresolve_claim"
+              type="object"
+              string="Reabrir"
+              class='btn-danger'
+              icon='fa-times'
+              attrs="{'invisible': [('status', '!=', 'resuelta'), ('status', '!=', 'cerrada'), ('status', '!=', '')]}"
+              />
+              <field name="warranty_id"/>
+
+          </tree>
+        </field>
+      </record>
+
+      <!-- actions opening views on models -->
+      <record model="ir.actions.act_window" id="ing.action_claims_list">
+        <field name="name">Vista de reclamaciones</field>
+        <field name="res_model">ing.claim</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+    </data>  
+
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+      <!-- explicit list view definition -->
+      <record model="ir.ui.view" id="ing.warranties_list">
+        <field name="name">ing list</field>
+        <field name="model">ing.warranty</field>
+        <field name="arch" type="xml">
+          <tree editable="bottom"
+            decoration-success="status=='activa'"
+            decoration-danger="status=='expirada'"
+            decoration-warning="status=='anulada'">
+            <field name="name"/>
+            <field name="status"/>
+            <field name="product_id"/>
+            <field name="warranty_code"
+              widget="CopyClipboardChar"/>
+            <field name="start_date"/>
+            <field name="end_date"
+              attrs="{'invisible': [('status', '=', 'anulada')]}"/>
+          </tree>
+        </field>
+      </record>
+
+      <!-- actions opening views on models -->
+      <record model="ir.actions.act_window" id="ing.action_warranties_list">
+        <field name="name">Vista de garantias</field>
+        <field name="res_model">ing.warranty</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+    </data>  
+</odoo>

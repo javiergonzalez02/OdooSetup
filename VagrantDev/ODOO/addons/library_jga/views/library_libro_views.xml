@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="library_jga.list_libros">
+            <field name="name">Libros</field>
+            <field name="model">library_jga.libro</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="autor_id"/>
+                    <field name="genero"/>
+                    <field name="socio_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="library_jga.libros_action_window">
+            <field name="name">Libros</field>
+            <field name="res_model">library_jga.libro</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

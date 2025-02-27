@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_final_jga_project,final_jga.project,model_final_jga_project,base.group_user,1,1,1,1
+access_final_jga_task,final_jga.task,model_final_jga_task,base.group_user,1,1,1,1
+access_final_jga_employee,final_jga.employee,model_final_jga_employee,base.group_user,1,1,1,1
