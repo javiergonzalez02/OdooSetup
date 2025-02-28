@@ -1,0 +1,5 @@
+# Usa la imagen oficial de Odoo versión 16 como base
+FROM odoo:16
+
+# Instala las librerías requeridas
+RUN pip3 install cachetools iso8601 boto unicodecsv xlrd

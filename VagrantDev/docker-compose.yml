@@ -10,14 +10,16 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./ODOO/data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
   odoo:
-    image: odoo:16
+    build:
+      context: .
+      dockerfile: DockerFile.Odoo
     container_name: odoo
     environment:
-      - HOST=${HOST}
-      - USER=${USER}
-      - PASSWORD=${PASSWORD}
+       - HOST=${HOST}
+       - USER=${ODOO_USER}
+       - PASSWORD=${ODOO_PASSWORD}
     ports:
       - '8069:8069'
     volumes:
@@ -26,5 +28,6 @@ services:
       - ./ODOO/sessions:/var/lib/odoo/sessions
     depends_on:
       - db
+    command: --dev=all
 volumes:
   db_data:
