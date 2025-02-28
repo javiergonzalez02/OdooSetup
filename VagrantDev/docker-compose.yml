@@ -4,20 +4,20 @@ services:
     image: postgres:14
     container_name: db
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - '5432:5432'
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ./ODOO/data:/var/lib/postgresql/data
   odoo:
     image: odoo:16
     container_name: odoo
     environment:
-      - HOST=db
-      - USER=odoo
-      - PASSWORD=1234
+      - HOST=${HOST}
+      - USER=${USER}
+      - PASSWORD=${PASSWORD}
     ports:
       - '8069:8069'
     volumes:
@@ -26,7 +26,5 @@ services:
       - ./ODOO/sessions:/var/lib/odoo/sessions
     depends_on:
       - db
-    command: --dev=all
-
 volumes:
   db_data:
