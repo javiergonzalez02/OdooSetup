@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   
     # Sincronización de archivos y carpetas:
     # Se sincroniza la carpeta ODOO y el archivo docker-compose.yml desde el host. Excluyendo presentaciones
-    config.vm.synced_folder ".", "/home/vagrant/OdooNotes", type: "virtualbox", exclude: ["presentaciones"]
+    config.vm.synced_folder ".", "/home/vagrant/OdooSetup", type: "virtualbox", exclude: ["presentaciones"]
   
     # Provisionamiento: Instalación de Docker y Docker Compose
     config.vm.provision "shell", inline: <<-SHELL
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
       sudo usermod -aG docker vagrant
 
       # Permisos necesarios para postgres
-      sudo chown -R 999:999 /home/vagrant/OdooNotes/ODOO/data
+      sudo chown -R 999:999 /home/vagrant/OdooSetup/ODOO/data
       
     SHELL
   end
