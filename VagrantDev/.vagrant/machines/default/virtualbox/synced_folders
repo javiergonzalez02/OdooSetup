@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/OdooNotes":{"type":"virtualbox","exclude":["presentaciones"],"guestpath":"/home/vagrant/OdooNotes","hostpath":"C:/Proyectos/OdooNotes/VagrantDev","disabled":false,"__vagrantfile":true}}}
