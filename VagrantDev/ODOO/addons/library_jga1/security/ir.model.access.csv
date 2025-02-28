@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_library_jga_autor,library_jga.autor,model_library_jga_autor,base.group_user,1,1,1,1
-access_library_jga_libro,library_jga.libro,model_library_jga_libro,base.group_user,1,1,1,1
-access_library_jga_socio,library_jga.socio,model_library_jga_socio,base.group_user,1,1,1,1

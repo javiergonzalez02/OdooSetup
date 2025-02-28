@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_jga_warranty,jga.warranty,model_jga_warranty,base.group_user,1,1,1,1
-access_jga_claim,jga.claim,model_jga_claim,base.group_user,1,1,1,1
-access_jga_product,jga.product,model_jga_product,base.group_user,1,1,1,1
