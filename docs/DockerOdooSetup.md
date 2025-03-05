@@ -1,59 +1,15 @@
 1. Dirigirse a la carpeta ./WindowsUnixDev para desarrollo o ./WindowsUnixProd para producción
 
-2. Crear el archivo .env a partir de .env.example:
+2. Instalar entorno de docker:
 
-- En unix:
-```
-cp .env.example .env
-```
+    - En Windows, se deberá instalar docker desktop, aunque se recomienda optar por la instalación de [Vagrant](./VagrantSetupOdoo.md). Para la instalación de Docker Desktop, referirse a esta página: https://docs.docker.com/desktop/setup/install/windows-install/ 
 
-- En Windows:
-```
-copy .env.example .env
-```
+    ![Instalación Docker Desktop Windows](./dockerDesktopWindows.png)
 
-Una vez hecho, se debe editar los usuarios y contraseñas al gusto. Se recomienda solo editar las contraseñas
+    - En MacOs, se podrá instalar docker desktop. Por lo general da menos problemas que en Windows, en caso de que los de, se podrá usar [Vagrant](./VagrantSetupOdoo.md).
 
-3. Ejecutar los comandos:
+    ![Instalación Docker Desktop MacOS](./dockerDesktopMacOS.png)
+    
+    - En Linux, se podrá instalar docker engine, siguiendo esta guía eligiendo la distribución de linux que proceda: https://docs.docker.com/engine/install/
 
-- Para levantar los contenedores: 
-``` bash
-docker compose up
-```
-
-- Para eliminar tanto contenedores como volúmenes en caso de error:
-``` bash
-docker compose down -v
-```
-
-4. En caso de que se quiera utilizar la base de datos con el set up inicial, se debe restaurar la base de datos desde la copia de seguridad:
-    - Entra al contenedor de la base de datos:
-      ```bash
-      docker compose exec db bash
-      ```
-    - Crea una nueva base de datos vacía:
-      ```bash
-      createdb -U odoo -O odoo odoo
-      ```
-    - Sal del contenedor:
-      ```bash
-      exit
-      ```
-    - Obtén el ID del contenedor con el comando:
-      ```bash
-      docker ps
-      ```
-    - Copia el archivo de respaldo de vuelta al contenedor:
-      ```bash
-      docker cp ./initial_setup.sql <ID_CONTENEDOR>:/
-      ```
-    - Vuelve a entrar y restaura la copia de seguridad:
-      ```bash
-      psql -U odoo -d odoo < ./initial_setup.sql
-      ```
-    - Sal del contenedor:
-      ```bash
-      exit
-      ```
-
-5. Estando el contenedor levantado, se podrá acceder a la insterfaz de odoo a través del siguiente link: http://localhost:8069/
+[VER EXPLICACIÓN DE USO](UsoYMantenimiento.md)
