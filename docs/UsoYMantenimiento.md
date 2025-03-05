@@ -1,127 +1,178 @@
-# GUÍA BÁSICA DE USO
+# Guía Básica de Uso
 
-NOTA: Se deberán seguir estos pasos independientemente de la opción de instalación que se haya escogido.
+## Índice
+1. [Crear el archivo .env](#1-crear-el-archivo-env)
+2. [Uso de Docker](#2-uso-de-docker)
+3. [Restauración de la base de datos inicial](#3-restauración-de-la-base-de-datos-inicial)
+4. [Acceso a la interfaz de Odoo](#4-acceso-a-la-interfaz-de-odoo)
+5. [Uso de la aplicación](#5-uso-de-la-aplicación)
+6. [Copia de seguridad de la base de datos](#6-copia-de-seguridad-de-la-base-de-datos)
 
-1. Crear el archivo .env a partir de .env.example:
+---
 
-- En unix:
-```
-cp .env.example .env
-```
+## 1. Crear el archivo .env
 
-- En Windows:
-```
-copy .env.example .env
-```
+**NOTA:** Se deberán seguir estos pasos independientemente de la opción de instalación escogida.
 
-Una vez hecho, se debe editar los usuarios y contraseñas al gusto. Se recomienda solo editar las contraseñas
+1. Copiar el archivo `.env.example` a `.env`:
+   - En Unix:
+     ```bash
+     cp .env.example .env
+     ```
+   - En Windows:
+     ```bash
+     copy .env.example .env
+     ```
 
-2. Una vez se ha establecido el entorno para docker, se usarán los siguientes comandos:
+2. Edita los usuarios y contraseñas según tus necesidades (se recomienda solo modificar las contraseñas).
 
-- Para levantar los contenedores: 
-``` bash
-docker compose up
-```
+---
 
-- Para eliminar tanto contenedores como volúmenes en caso de error:
-``` bash
-docker compose down -v
-```
+## 2. Uso de Docker
 
-3. En caso de que se quiera utilizar la base de datos con el set up inicial, se debe restaurar la base de datos desde la copia de seguridad:
-  - Entra al contenedor de la base de datos:
-      ```bash
-      docker compose exec db bash
-      ```
-  - Crea una nueva base de datos vacía:
-      ```bash
-      createdb -U odoo -O odoo odoo
-      ```
-  - Sal del contenedor:
-      ```bash
-      exit
-      ```
-  - Obtén el ID del contenedor db con el comando:
-      ```bash
-      docker ps
-      ```
-  - Copia el archivo de respaldo de vuelta al contenedor:
-      ```bash
-      docker cp ./initial_setup.sql <ID_CONTENEDOR>:/
-      ```
-  - Vuelve a entrar y restaura la copia de seguridad:
-      ```bash
-      psql -U odoo -d odoo < ./initial_setup.sql
-      ```
-  - Sal del contenedor:
-      ```bash
-      exit
-      ```
+Una vez establecido el entorno para Docker, utiliza los siguientes comandos:
 
-![Ejemplo Importación Base de Datos](ejemploImportacionDb.png)
+- **Levantar los contenedores:**
+  ```bash
+  docker compose up
+  ```
 
-- Usuario para iniciar sesión:
+- **Eliminar contenedores y volúmenes en caso de error:**
+  ```bash
+  docker compose down -v
+  ```
+
+---
+
+## 3. Restauración de la base de datos inicial
+
+Si deseas usar la base de datos con el set up inicial, sigue estos pasos:
+
+1. **Entrar al contenedor de la base de datos:**
+   ```bash
+   docker compose exec db bash
+   ```
+
+2. **Crear una nueva base de datos vacía:**
+   ```bash
+   createdb -U odoo -O odoo odoo
+   ```
+
+3. **Salir del contenedor:**
+   ```bash
+   exit
+   ```
+
+4. **Obtener el ID del contenedor de la base de datos:**
+   ```bash
+   docker ps
+   ```
+
+5. **Copiar el archivo de respaldo al contenedor:**
+   ```bash
+   docker cp ./initial_setup.sql <ID_CONTENEDOR>:/ 
+   ```
+
+6. **Restaurar la copia de seguridad:**
+   - Vuelve a entrar al contenedor:
+     ```bash
+     docker compose exec db bash
+     ```
+   - Restaura la copia de seguridad:
+     ```bash
+     psql -U odoo -d odoo < ./initial_setup.sql
+     ```
+   - Sal del contenedor:
+     ```bash
+     exit
+     ```
+
+> **Imagen:** Ejemplo de importación de base de datos  
+> ![Ejemplo Importación Base de Datos](ejemploImportacionDb.png)
+
+- **Usuario para iniciar sesión:**
   - Correo: admin
   - Contraseña: 1234
 
-- NOTA: Se recomienda crear la base de datos desde 0 ya que la instalación de los módulos es muy simple
+> **NOTA:** Se recomienda crear la base de datos desde cero, ya que la instalación de módulos es muy simple.
 
-4. Estando el contenedor levantado, se podrá acceder a la insterfaz de odoo a través del siguiente link: http://localhost:8069/
+---
 
-- En caso de que se opte por crear la base de datos desde 0, aparecerá la siguiente ventana:
+## 4. Acceso a la interfaz de Odoo
 
-![Creación Base de Datos](setUpDbOdoo.png)
+Con el contenedor levantado, accede a Odoo a través del siguiente enlace:  
+[http://localhost:8069/](http://localhost:8069/)
 
-Se deberá establecer el usuario, contraseña, correo, master password e idioma. Una vez hecho eso, nos redirigirá a la página de inicio de sesión.
+- **Creación de la base de datos desde cero:**  
+  Aparecerá una ventana para establecer usuario, contraseña, correo, master password e idioma.  
+  > **Imagen:** Creación de Base de Datos  
+  > ![Creación Base de Datos](setUpDbOdoo.png)
 
-![Inicio de Sesión](inicioSesion.png)
+- **Si se importó la base de datos:**  
+  Verás una pantalla para seleccionar la base de datos llamada "odoo". Una vez seleccionada, se mostrará la pantalla de inicio de sesión similar a la anterior.  
+  > **Imagen:** Selección de Base de Datos  
+  > ![Selección Base de Datos](inicioSesion.png)
 
-- En el caso de que se haya importado la base de datos aparecerá la siguiente pantalla, donde podremos importar la base de datos ya creada llamada odoo. Simplemente deberemos seleccionarla y nos llevará al inicio de sesión como en la otra manera.
+---
 
-![Selección Base de Datos](inicioSesion.png)
+## 5. Uso de la aplicación
 
-5. Una vez dentro de la app, aparecerá la siguiente interfaz. Donde se podrá instalar las aplicaciones que se requieran pulsando el botón activar:
+Una vez dentro de la app, encontrarás la siguiente interfaz:
 
-![Pantalla Apps](pantallaApps.png)
+> **Imagen:** Pantalla de Apps  
+> ![Pantalla Apps](pantallaApps.png)
 
-En el icono de arriba a la izquierda podremos elegir a que aplicación queremos ir, siendo bastante intuitivo.
+- **Instalación de aplicaciones:**  
+  Pulsa el botón "activar" para instalar las aplicaciones requeridas.
+  
+- **Navegación:**  
+  En el icono superior izquierdo podrás elegir la aplicación que deseas usar de forma intuitiva.  
+  > **Imagen:** Menú de Apps  
+  > ![Menú Apps](menuApps.png)
 
-![Menu Apps](menuApps.png)
+---
 
-6. Para hacer una copia de seguridad de la base de datos, se deberán seguir los siguientes pasos:
+## 6. Copia de seguridad de la base de datos
 
-1º **Crear la copia de seguridad con `pg_dump`:**
-    - Conéctate al contenedor de la base de datos:
-      ```bash
-      docker compose exec db bash
-      ```
-    - Parar el servicio de postgres:
-      ```bash
-      service postgresql stop
-      ```
-    - Dentro del contenedor crea la copia de seguridad:
-      ```bash
-      pg_dump -U odoo odoo > backup.sql
-      ```
-    - Volver a iniciar el servicio de postgres:
-      ```bash
-        service postgresql start
-        ```
-    - Sal del contenedor:
-      ```bash
-      exit
-      ```
-    - Apaga el contenedor
-   
-2º **Copiar el archivo de copia de seguridad a la máquina anfitriona:**
-    - Usa el siguiente comando cambiando ruta por la ruta donde quieras guardar el archivo:
-    ```bash
-    docker compose cp db:./backup.sql ./ruta/backup.sql
-    ```
-    - 
+Sigue estos pasos para realizar una copia de seguridad:
 
-3º **Eliminar los contenedores y limpiar los directorios mapeados:**
-    ```bash
-    docker compose down -v
-    sudo rm -rf dataPG/* sessions/* filestore/* addons/*
-    ```
+### 6.1 Crear la copia de seguridad con `pg_dump`
+
+1. Conéctate al contenedor de la base de datos:
+   ```bash
+   docker compose exec db bash
+   ```
+
+2. Detén el servicio de PostgreSQL:
+   ```bash
+   service postgresql stop
+   ```
+
+3. Crea la copia de seguridad:
+   ```bash
+   pg_dump -U odoo odoo > backup.sql
+   ```
+
+4. Reinicia el servicio de PostgreSQL:
+   ```bash
+   service postgresql start
+   ```
+
+5. Sal del contenedor:
+   ```bash
+   exit
+   ```
+
+### 6.2 Copiar el archivo de copia de seguridad a la máquina anfitriona
+
+Utiliza el siguiente comando (reemplaza `./ruta/` con la ruta donde desees guardar el archivo):
+```bash
+docker compose cp db:./backup.sql ./ruta/backup.sql
+```
+
+### 6.3 Eliminar contenedores y limpiar directorios mapeados
+
+```bash
+docker compose down -v
+sudo rm -rf dataPG/* sessions/* filestore/* addons/*
+```
