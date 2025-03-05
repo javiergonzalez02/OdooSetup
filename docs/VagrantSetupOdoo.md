@@ -31,4 +31,4 @@ vagrant ssh
 cd OdooSetup/
 ```
 
-[VER EXPLICACIÓN DE USO](UsoYMantenimiento.md)
+![VER EXPLICACIÓN DE USO](UsoYMantenimiento.md)

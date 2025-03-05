@@ -58,7 +58,7 @@ docker compose down -v
       exit
       ```
 
-[Ejemplo Importación Base de Datos](ejemploImportacionDB.png)
+![Ejemplo Importación Base de Datos](ejemploImportacionDb.png)
 
 - Usuario para iniciar sesión:
   - Correo: admin
@@ -70,23 +70,23 @@ docker compose down -v
 
 - En caso de que se opte por crear la base de datos desde 0, aparecerá la siguiente ventana:
 
-[Creación Base de Datos](setUpDbOdoo.png)
+![Creación Base de Datos](setUpDbOdoo.png)
 
 Se deberá establecer el usuario, contraseña, correo, master password e idioma. Una vez hecho eso, nos redirigirá a la página de inicio de sesión.
 
-[Inicio de Sesión](inicioSesion.png)
+![Inicio de Sesión](inicioSesion.png)
 
 - En el caso de que se haya importado la base de datos aparecerá la siguiente pantalla, donde podremos importar la base de datos ya creada llamada odoo. Simplemente deberemos seleccionarla y nos llevará al inicio de sesión como en la otra manera.
 
-[Selección Base de Datos](inicioSesion.png)
+![Selección Base de Datos](inicioSesion.png)
 
 5. Una vez dentro de la app, aparecerá la siguiente interfaz. Donde se podrá instalar las aplicaciones que se requieran pulsando el botón activar:
 
-[Pantalla Apps](pantallaApps.png)
+![Pantalla Apps](pantallaApps.png)
 
 En el icono de arriba a la izquierda podremos elegir a que aplicación queremos ir, siendo bastante intuitivo.
 
-[Menu Apps](menuApps.png)
+![Menu Apps](menuApps.png)
 
 6. Para hacer una copia de seguridad de la base de datos, se deberán seguir los siguientes pasos:
 
