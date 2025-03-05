@@ -78,10 +78,48 @@ Se deberá establecer el usuario, contraseña, correo, master password e idioma.
 
 [Selección Base de Datos](inicioSesion.png)
 
-5. Una vez dentro de la app, aparecerá la siguiente interfaz. Donde se podrá instalar las aplicaciones que se requieran:
+5. Una vez dentro de la app, aparecerá la siguiente interfaz. Donde se podrá instalar las aplicaciones que se requieran pulsando el botón activar:
 
 [Pantalla Apps](pantallaApps.png)
 
 En el icono de arriba a la izquierda podremos elegir a que aplicación queremos ir, siendo bastante intuitivo.
 
 [Menu Apps](menuApps.png)
+
+6. Para hacer una copia de seguridad de la base de datos, se deberán seguir los siguientes pasos:
+
+1º **Crear la copia de seguridad con `pg_dump`:**
+    - Conéctate al contenedor de la base de datos:
+      ```bash
+      docker compose exec db bash
+      ```
+    - Parar el servicio de postgres:
+      ```bash
+      service postgresql stop
+      ```
+    - Dentro del contenedor crea la copia de seguridad:
+      ```bash
+      pg_dump -U odoo odoo > backup.sql
+      ```
+    - Volver a iniciar el servicio de postgres:
+      ```bash
+        service postgresql start
+        ```
+    - Sal del contenedor:
+      ```bash
+      exit
+      ```
+    - Apaga el contenedor
+   
+2º **Copiar el archivo de copia de seguridad a la máquina anfitriona:**
+    - Usa el siguiente comando cambiando ruta por la ruta donde quieras guardar el archivo:
+    ```bash
+    docker compose cp db:./backup.sql ./ruta/backup.sql
+    ```
+    - 
+
+3º **Eliminar los contenedores y limpiar los directorios mapeados:**
+    ```bash
+    docker compose down -v
+    sudo rm -rf dataPG/* sessions/* filestore/* addons/*
+    ```
