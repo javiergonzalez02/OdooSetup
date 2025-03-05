@@ -14,6 +14,8 @@ cp .env.example .env
 copy .env.example .env
 ```
 
+Una vez hecho, se debe editar los usuarios y contraseñas al gusto. Se recomienda solo editar las contraseñas
+
 2. Una vez se ha establecido el entorno para docker, se usarán los siguientes comandos:
 
 - Para levantar los contenedores: 

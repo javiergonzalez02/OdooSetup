@@ -13,8 +13,6 @@ Se deberá escoger una opción de entre las siguientes.
 
 ![Instalación Virtual Box](./virtualBoxInstall.png)
 
-Una vez hecho, se debe editar los usuarios y contraseñas al gusto. Se recomienda solo editar las contraseñas
-
 3. En la carpeta en la que se encuentra el archivo 'Vagrantfile'. En este proyecto será la carpeta VagrantDev (En la cual se encuentra este documento). Ejecuta los siguientes comandos:
 
 - Este comando levantará la Máquina virtual (La primera vez puede tardar unos minutos. Y es posible que, dependiendo de tu ordenador, debas abrir la aplicación de Virtual Box)![alt text](image.png)
