@@ -15,7 +15,8 @@ Se deberá escoger una opción de entre las siguientes.
 
 3. En la carpeta en la que se encuentra el archivo 'Vagrantfile'. En este proyecto será la carpeta VagrantDev (En la cual se encuentra este documento). Ejecuta los siguientes comandos:
 
-- Este comando levantará la Máquina virtual (La primera vez puede tardar unos minutos. Y es posible que, dependiendo de tu ordenador, debas abrir la aplicación de Virtual Box)![alt text](image.png)
+- Este comando levantará la Máquina virtual (La primera vez puede tardar unos minutos. Y es posible que, dependiendo de tu ordenador, debas abrir la aplicación de Virtual Box)
+
 ``` bash
 vagrant up
 ```
