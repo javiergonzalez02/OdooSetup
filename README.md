@@ -37,3 +37,7 @@ Accede a la explicación completa aquí:
 [VER EXPLICACIÓN](./docs/UsoYMantenimiento.md)
 
 ---
+
+## Preparación para Desarrollar Módulos de Odoo
+
+Para conocer a fondo el desarrollo de módulos de Odoo, referirse a la carpeta [presentaciones](./presentaciones/)
