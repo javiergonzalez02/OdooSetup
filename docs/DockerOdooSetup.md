@@ -1,15 +1,51 @@
-1. Dirigirse a la carpeta ./WindowsUnixDev para desarrollo o ./WindowsUnixProd para producción
+# Instalación de Docker sin Vagrant
 
-2. Instalar entorno de docker:
+Esta guía te muestra cómo instalar el entorno de Docker en distintos sistemas operativos sin utilizar Vagrant. Dependiendo de tu objetivo, utiliza una de las siguientes carpetas:
 
-    - En Windows, se deberá instalar docker desktop, aunque se recomienda optar por la instalación de [Vagrant](./VagrantSetupOdoo.md). Para la instalación de Docker Desktop, referirse a esta página: https://docs.docker.com/desktop/setup/install/windows-install/ 
+- **Desarrollo:** `./WindowsUnixDev`
+- **Producción:** `./WindowsUnixProd`
 
-    ![Instalación Docker Desktop Windows](./dockerDesktopWindows.png)
+---
 
-    - En MacOs, se podrá instalar docker desktop. Por lo general da menos problemas que en Windows, en caso de que los de, se podrá usar [Vagrant](./VagrantSetupOdoo.md).
+## 1. Selecciona el Entorno
 
-    ![Instalación Docker Desktop MacOS](./dockerDesktopMacOS.png)
-    
-    - En Linux, se podrá instalar docker engine, siguiendo esta guía eligiendo la distribución de linux que proceda: https://docs.docker.com/engine/install/
+Navega a la carpeta correspondiente según el uso que le darás:
+- Para **desarrollo**, utiliza `./WindowsUnixDev`.
+- Para **producción**, utiliza `./WindowsUnixProd`.
 
+---
+
+## 2. Instalación del Entorno Docker
+
+### En Windows
+
+- **Docker Desktop:**  
+  Se debe instalar Docker Desktop. Aunque, si lo prefieres, se recomienda optar por la instalación de [Vagrant](./VagrantSetupOdoo.md).  
+  Consulta la guía oficial para la instalación de Docker Desktop en Windows:  
+  [Guía oficial de instalación](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+  ![Instalación Docker Desktop Windows](./dockerDesktopWindows.png)
+
+---
+
+### En macOS
+
+- **Docker Desktop:**  
+  En macOS es posible instalar Docker Desktop, y por lo general se presentan menos inconvenientes que en Windows. En caso de dificultades, también se puede optar por la instalación de [Vagrant](./VagrantSetupOdoo.md).
+
+  ![Instalación Docker Desktop MacOS](./dockerDesktopMacOS.png)
+
+---
+
+### En Linux
+
+- **Docker Engine:**  
+  En Linux se recomienda instalar Docker Engine. Sigue la guía oficial y selecciona la instrucción correspondiente a la distribución de Linux que estés utilizando:  
+  [Guía de instalación de Docker Engine](https://docs.docker.com/engine/install/)
+
+---
+
+## 3. Uso y Mantenimiento
+
+Una vez instalado Docker, revisa la guía completa para aprender a utilizar Odoo y gestionar el mantenimiento, incluyendo copias de seguridad y otras operaciones:  
 [VER EXPLICACIÓN DE USO](UsoYMantenimiento.md)
