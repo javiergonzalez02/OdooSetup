@@ -2,20 +2,12 @@
 
 ## VAGRANT (RECOMENDADO EXCLUSIVAMENTE PARA DESARROLLO DE MÓDULOS)
 
-[VER EXPLICACIÓN](./VagrantDev/README.md)
+[VER EXPLICACIÓN](./docs/VagrantSetupOdoo.md)
 
-## ODOO CON DOCKER DESKTOP INSTALADO EN WINDOWS, LINUX O MAC
+## ODOO CON DOCKER DESKTOP INSTALADO EN WINDOWS O MAC; O DOCKER EN LINUX
 
-1. Dirigirse a la carpeta ./WindowsUnixDev para desarrollo o ./WindowsUnixProd para producción
+[VER EXPLICACIÓN](./docs/DockerOdooSetup.md)
 
-2. Ejecutar los comandos:
+## EXPLICACIÓN DE USO BÁSICO DE ODOO Y COPIAS DE SEGURIDAD (COMÚN A AMBOS ENTORNOS)
 
-- Para levantar los contenedores: 
-``` bash
-docker compose up
-```
-
-- Para eliminar tanto contenedores como volúmenes en caso de error:
-``` bash
-docker compose down -v
-```
+[VER EXPLICACIÓN](./docs/UsoYMantenimiento.md)

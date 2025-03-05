@@ -9,9 +9,25 @@ Se deberá escoger la opción que se ajuste al sistema operativo que se esté us
 
 Se deberá escoger una opción de entre las siguientes.
 
-![Instalación Virtual Box](../virtualBoxInstall.png)
+![Instalación Virtual Box](./virtualBoxInstall.png)
 
-3. En la carpeta en la que se encuentra el archivo 'Vagrantfile'. En este proyecto será la carpeta VagrantDev (En la cual se encuentra este documento). Ejecuta los siguientes comandos:
+3. Crear el archivo .env a partir de .env.example:
+
+- En unix:
+
+```
+cp .env.example .env
+```
+
+- En Windows:
+
+```
+copy .env.example .env
+```
+
+Una vez hecho, se debe editar los usuarios y contraseñas al gusto. Se recomienda solo editar las contraseñas
+
+4. En la carpeta en la que se encuentra el archivo 'Vagrantfile'. En este proyecto será la carpeta VagrantDev (En la cual se encuentra este documento). Ejecuta los siguientes comandos:
 
 - Este comando levantará la Máquina virtual (La primera vez puede tardar unos minutos. Y es posible que, dependiendo de tu ordenador, debas abrir la aplicación de Virtual Box)
 ``` bash
