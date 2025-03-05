@@ -1,13 +1,39 @@
-# EXPLICACIÓN DE CÓMO INSTALAR ODOO
+# Instalación y Uso de Odoo
 
-## VAGRANT (RECOMENDADO EXCLUSIVAMENTE PARA DESARROLLO DE MÓDULOS)
+Bienvenido al repositorio para la instalación y uso de Odoo.  
+Aquí encontrarás toda la documentación necesaria para:
 
+- Desarrollar módulos usando **Vagrant** (recomendado exclusivamente para desarrollo).
+- Instalar Odoo utilizando **Docker** (compatible con Docker Desktop en Windows/Mac y Docker en Linux).
+- Conocer el uso básico de Odoo y realizar copias de seguridad.
+
+## Índice
+- [Instalación con Vagrant](#instalación-con-vagrant)
+- [Instalación con Docker](#instalación-con-docker)
+- [Uso Básico y Mantenimiento](#uso-básico-y-mantenimiento)
+
+---
+
+## Instalación con Vagrant
+
+**Recomendado exclusivamente para el desarrollo de módulos.**  
+Accede a la explicación completa aquí:  
 [VER EXPLICACIÓN](./docs/VagrantSetupOdoo.md)
 
-## ODOO CON DOCKER DESKTOP INSTALADO EN WINDOWS O MAC; O DOCKER EN LINUX
+---
 
+## Instalación con Docker
+
+**Para usuarios de Docker Desktop en Windows o Mac; o Docker en Linux.**  
+Consulta la guía detallada en:  
 [VER EXPLICACIÓN](./docs/DockerOdooSetup.md)
 
-## EXPLICACIÓN DE USO BÁSICO DE ODOO Y COPIAS DE SEGURIDAD (COMÚN A AMBOS ENTORNOS)
+---
 
+## Uso Básico y Mantenimiento
+
+Guía común para ambos entornos, que abarca el uso básico de Odoo y la realización de copias de seguridad.  
+Accede a la explicación completa aquí:  
 [VER EXPLICACIÓN](./docs/UsoYMantenimiento.md)
+
+---
