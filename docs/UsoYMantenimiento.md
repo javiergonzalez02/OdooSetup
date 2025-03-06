@@ -109,7 +109,7 @@ Con el contenedor levantado, accede a Odoo a través del siguiente enlace:
   > ![Creación Base de Datos](setUpDbOdoo.png)
 
 - **Si se importó la base de datos:**  
-  Verás una pantalla para seleccionar la base de datos llamada "odoo". Una vez seleccionada, se mostrará la pantalla de inicio de sesión similar a la anterior.  
+  Verás una pantalla para seleccionar la base de datos llamada "odoo". Se debe esperar hasta que se ejecute el script entero antes de seleccionar la base de datos. Una vez seleccionada, se mostrará la pantalla de inicio de sesión similar a la anterior.  
   > **Imagen:** Selección de Base de Datos  
   > ![Selección Base de Datos](inicioSesion.png)
 
