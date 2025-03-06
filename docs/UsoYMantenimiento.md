@@ -7,7 +7,7 @@
 4. [Acceso a la interfaz de Odoo](#4-acceso-a-la-interfaz-de-odoo)
 5. [Uso de la aplicación](#5-uso-de-la-aplicación)
 6. [Copia de seguridad de la base de datos](#6-copia-de-seguridad-de-la-base-de-datos)
-7. [Extraer código de los módulos base para desarrollo](#7-extraer-código-de-los-módulos-base-para-desarrollo)
+7. [Extraer código de los módulos descargados para desarrollo](#7-extraer-código-de-los-módulos-descargados-para-desarrollo)
 ---
 
 ## 1. Crear el archivo .env
@@ -177,10 +177,10 @@ docker compose down -v
 sudo rm -rf dataPG/* sessions/* filestore/* addons/*
 ```
 
-## 7. Extraer código de los módulos base para desarrollo
+## 7. Extraer código de los módulos descargados para desarrollo
 
 Para poder obtener el código de los modulos oficiales descargados, se debe ejecutar el siguiente comando en el host
 
 ```bash
-docker cp odoo:/usr/lib/python3/dist-packages/odoo/addons/base ./ODOO/base_mirror
+docker cp odoo:/usr/lib/python3/dist-packages/odoo/addons/ ./ODOO/addons_mirror
 ```
