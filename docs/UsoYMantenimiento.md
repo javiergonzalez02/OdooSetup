@@ -177,10 +177,18 @@ docker compose down -v
 sudo rm -rf dataPG/* sessions/* filestore/* addons/*
 ```
 
-## 7. Extraer código de los módulos descargados para desarrollo
+## 7. Extraer código de los módulos para desarrollo
 
-Para poder obtener el código de los modulos oficiales descargados, se debe ejecutar el siguiente comando en el host
+Para poder obtener el código de los modulos oficiales, se debe ejecutar el siguiente comando en el host. La única función que tiene esto es para que, en caso de que se vaya a ampliar un módulo, entender su funcionamiento.
 
 ```bash
-docker cp odoo:/usr/lib/python3/dist-packages/odoo/addons/ ./ODOO/addons_mirror
+docker exec odoo tar czvf - \
+  --ignore-failed-read \
+  --exclude='*/static/lib/fontawesome*' \
+  --exclude='*/static/lib/underscore*' \
+  --exclude='*/static/fonts/google*' \
+  --exclude='*/static/src/fonts*' \
+  /usr/lib/python3/dist-packages/odoo/addons/ | tar xzf - -C ./ODOO/addons_lib
 ```
+
+NOTA: Se han excluido ciertos archivos que han dado error y se ha ignorado el error de fallo de lectura. En caso de que necesites uno de estos simplemente cópialo individualmente: ```docker cp odoo:/usr/lib/python3/dist-packages/odoo/addons/web/static/lib/fontawesome ./ODOO/addons_lib/fontawesome```
