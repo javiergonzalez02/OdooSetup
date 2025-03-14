@@ -1,0 +1,36 @@
+<odoo>
+  <data>
+    <!-- Vista del form -->
+    <record id="view_notify_demo_form" model="ir.ui.view">
+      <field name="name">notification_test.notify_demo.form</field>
+      <field name="model">notification_test.notify_demo</field>
+      <field name="arch" type="xml">
+        <form string="Notificación Demo">
+          <header>
+            <button name="notify_user" type="object" string="Notificar" class="btn-primary" />
+          </header>
+          <sheet>
+            <group>
+              <div class="o_form_label">Pulsa el botón para enviar la notificación.</div>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Acción para abrir el form -->
+    <record id="action_notify_demo_form" model="ir.actions.act_window">
+      <field name="name">Notificación Demo</field>
+      <field name="res_model">notification_test.notify_demo</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_notify_demo_form" />
+      <field name="target">new</field>
+    </record>
+
+
+    <!-- Menú -->
+    <menuitem id="menu_notify_demo_category" name="Notification Test" sequence="10"/>
+    <menuitem id="menu_notify_demo" name="Notificar Demo" parent="menu_notify_demo_category"
+      action="action_notify_demo_form" />
+  </data>
+</odoo>
