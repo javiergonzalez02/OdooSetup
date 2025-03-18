@@ -32,9 +32,19 @@
 
 Una vez establecido el entorno para Docker, utiliza los siguientes comandos:
 
-- **Levantar los contenedores:**
+- **Levantar los contenedores con logs:**
   ```bash
   docker compose up
+  ```
+
+- **Levantar los contenedores sin logs:**
+  ```bash
+  docker compose up -d
+  ```
+  
+- **Ver logs de los contenedores:**
+  ```bash
+  docker compose logs -f
   ```
 
 - **Eliminar contenedores y volúmenes en caso de error:**

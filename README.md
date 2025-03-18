@@ -14,6 +14,12 @@ Aquí encontrarás toda la documentación necesaria para:
 
 ---
 
+## Para comenzar, clona el repositorio:
+
+```bash
+    git clone https://github.com/javiergonzalez02/OdooSetup
+```
+
 ## Instalación con Vagrant
 
 **Recomendado exclusivamente para el desarrollo de módulos.**  
