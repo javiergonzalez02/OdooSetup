@@ -12,7 +12,7 @@
 
 ## 1. Crear el archivo .env
 
-**NOTA:** Se deberán seguir estos pasos independientemente de la opción de instalación escogida.
+**Importante**: Este paso es obligatorio, sin importar el método de instalación que elijas.
 
 1. Copiar el archivo `.env.example` a `.env`:
    - En Unix:
@@ -37,7 +37,7 @@ Una vez establecido el entorno para Docker, utiliza los siguientes comandos:
   docker compose up
   ```
 
-- **Levantar los contenedores sin logs:**
+- **Levantar los contenedores en segundo plano (sin logs):**
   ```bash
   docker compose up -d
   ```
@@ -47,7 +47,12 @@ Una vez establecido el entorno para Docker, utiliza los siguientes comandos:
   docker compose logs -f
   ```
 
-- **Eliminar contenedores y volúmenes en caso de error:**
+- **Detener contenedores:**
+  ```bash
+  docker compose down
+  ```
+
+- **Detener y eliminar contenedores y volúmenes (en caso de error):**
   ```bash
   docker compose down -v
   ```

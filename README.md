@@ -7,43 +7,64 @@ Aquí encontrarás toda la documentación necesaria para:
 - Instalar Odoo utilizando **Docker** (compatible con Docker Desktop en Windows/Mac y Docker en Linux).
 - Conocer el uso básico de Odoo y realizar copias de seguridad.
 
+---
+
 ## Índice
+
+- [Primeros pasos](#primeros-pasos)
 - [Instalación con Vagrant](#instalación-con-vagrant)
 - [Instalación con Docker](#instalación-con-docker)
 - [Uso Básico y Mantenimiento](#uso-básico-y-mantenimiento)
+- [Desarrollo de Módulos de Odoo](#desarrollo-de-módulos-de-odoo)
 
 ---
 
-## Para comenzar, clona el repositorio:
+## Primeros pasos
+
+Antes de comenzar, asegúrate de obtener el repositorio. Puedes hacerlo de dos formas:
+
+- Con Git (recomendado):
+  Ejecuta en tu terminal:
 
 ```bash
     git clone https://github.com/javiergonzalez02/OdooSetup
 ```
 
+- Descarga manual:
+Si no tienes Git instalado, descarga el repositorio manualmente:
+![Descargar](./docs/capturaDescargarRepo.png)
+
+---
+
 ## Instalación con Vagrant
 
-**Recomendado exclusivamente para el desarrollo de módulos.**  
-Accede a la explicación completa aquí:  
+Nota: Esta opción está orientada exclusivamente al desarrollo de módulos.
+
+Para configurar tu entorno de desarrollo con Vagrant, consulta la guía completa: 
 [VER EXPLICACIÓN](./docs/VagrantSetupOdoo.md)
 
 ---
 
 ## Instalación con Docker
 
-**Para usuarios de Docker Desktop en Windows o Mac; o Docker en Linux.**  
-Consulta la guía detallada en:  
+Requisitos:
+
+Windows/Mac: Docker Desktop
+Linux: Docker Engine
+Para obtener la guía detallada, revisa:
+
 [VER EXPLICACIÓN](./docs/DockerOdooSetup.md)
 
 ---
 
 ## Uso Básico y Mantenimiento
 
-Guía común para ambos entornos, que abarca el uso básico de Odoo y la realización de copias de seguridad.  
-Accede a la explicación completa aquí:  
+Esta sección explica cómo utilizar Odoo y realizar tareas de mantenimiento, incluyendo la realización de copias de seguridad.
+Consulta la guía completa en:
 [VER EXPLICACIÓN](./docs/UsoYMantenimiento.md)
 
 ---
 
-## Preparación para Desarrollar Módulos de Odoo
+## Desarrollo de Módulos de Odoo
 
 Para conocer a fondo el desarrollo de módulos de Odoo, referirse a la carpeta [presentaciones](./presentaciones/)
