@@ -203,12 +203,13 @@ NOTA: La carpeta `filestore` dentro de la carpeta `ODOO` debe ser guardada junto
 
 - Comando para Unix:
 ```bash
-cp -r ./ODOO ./ODOO_BACKUP/filestore/
+mkdir -p ./ODOO_BACKUP/filestore
+cp -r ./ODOO/filestore/ ./ODOO_BACKUP/filestore/
 ```
 
 - Comando para Windows:
 ```bash
-xcopy ".\ODOO" ".\ODOO_BACKUP\filestore" /E /I
+xcopy ".\ODOO\filestore" ".\ODOO_BACKUP\filestore" /E /I
 ```
 
 ## 7. Extraer código de los módulos para desarrollo
