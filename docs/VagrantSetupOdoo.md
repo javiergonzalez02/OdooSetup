@@ -27,6 +27,10 @@ Esta guía te mostrará cómo configurar tu entorno de desarrollo para Odoo util
 1. Ubicación del Vagrantfile:
     Dirígete a la carpeta **VagrantDev** (donde se encuentra el archivo ``Vagrantfile``).
 
+   ```bash
+     cd VagrantDev/
+   ```
+
 2. Iniciar la máquina virtual:
     Ejecuta:
    ```bash
@@ -56,7 +60,7 @@ Alternativamente, puedes apagarla desde la interfaz de VirtualBox: haz clic dere
 ![apagarMaquinaVirtual](/docs/apagarMaquinaVB.png)
 
 
-En caso de que no se necesite más información sobre el uso de Vagrant, se puede referir a la [documentación oficial](https://developer.hashicorp.com/vagrant/docs).
+En caso de que se necesite más información sobre el uso de Vagrant, se puede referir a la [documentación oficial](https://developer.hashicorp.com/vagrant/docs).
 
 ---
 

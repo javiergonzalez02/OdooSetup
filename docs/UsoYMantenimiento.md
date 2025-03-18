@@ -199,16 +199,16 @@ Utiliza el siguiente comando (reemplaza `./ruta/` con la ruta donde desees guard
 docker compose cp db:./backup.sql ./ruta/backup.sql
 ```
 
-NOTA: La carpeta `filestore` debe ser guardada junto con el dump de la base de datos. 
+NOTA: La carpeta `filestore` dentro de la carpeta `ODOO` debe ser guardada junto con el dump de la base de datos.
 
 - Comando para Unix:
 ```bash
-cp -r ./ODOO ./ODOO_BACKUP
+cp -r ./ODOO ./ODOO_BACKUP/filestore/
 ```
 
 - Comando para Windows:
 ```bash
-xcopy ".\ODOO" ".\ODOO_BACKUP" /E /I
+xcopy ".\ODOO" ".\ODOO_BACKUP\filestore" /E /I
 ```
 
 ## 7. Extraer código de los módulos para desarrollo

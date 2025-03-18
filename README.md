@@ -49,8 +49,9 @@ Para configurar tu entorno de desarrollo con Vagrant, consulta la guía completa
 
 Requisitos:
 
-Windows/Mac: Docker Desktop
-Linux: Docker Engine
+- Windows/Mac: Docker Desktop
+- Linux: Docker Engine
+
 Para obtener la guía detallada, revisa:
 
 [VER EXPLICACIÓN](./docs/DockerOdooSetup.md)
@@ -60,6 +61,7 @@ Para obtener la guía detallada, revisa:
 ## Uso Básico y Mantenimiento
 
 Esta sección explica cómo utilizar Odoo y realizar tareas de mantenimiento, incluyendo la realización de copias de seguridad.
+
 Consulta la guía completa en:
 [VER EXPLICACIÓN](./docs/UsoYMantenimiento.md)
 
