@@ -5,3 +5,4 @@
 **/filestore/
 **/sessions/
 .idea/
+!**/ODOO_INITIAL_SETUP/filestore

@@ -97,10 +97,24 @@ Si deseas usar la base de datos con el set up inicial, sigue estos pasos:
      ```bash
      psql -U odoo -d odoo < ./initial_setup.sql
      ```
+    **IMPORTANTE:** No tocar nada hasta que el proceso finaliza. Tardará unos segundos.   
+
    - Sal del contenedor:
      ```bash
      exit
      ```
+
+7. **Restaurar carpeta filestore:**
+
+   - Comando para Unix:
+    ```bash
+    cp -r ./ODOO_INITIAL_SETUP ./ODOO
+    ```
+
+   - Comando para Windows:
+    ```bash
+    xcopy ".\ODOO_INITIAL_SETUP" ".\ODOO" /E /I
+    ```
 
 > **Imagen:** Ejemplo de importación de base de datos  
 > ![Ejemplo Importación Base de Datos](ejemploImportacionDb.png)
@@ -185,11 +199,16 @@ Utiliza el siguiente comando (reemplaza `./ruta/` con la ruta donde desees guard
 docker compose cp db:./backup.sql ./ruta/backup.sql
 ```
 
-### 6.3 Eliminar contenedores y limpiar directorios mapeados
+NOTA: La carpeta `filestore` debe ser guardada junto con el dump de la base de datos. 
 
+- Comando para Unix:
 ```bash
-docker compose down -v
-sudo rm -rf dataPG/* sessions/* filestore/* addons/*
+cp -r ./ODOO ./ODOO_BACKUP
+```
+
+- Comando para Windows:
+```bash
+xcopy ".\ODOO" ".\ODOO_BACKUP" /E /I
 ```
 
 ## 7. Extraer código de los módulos para desarrollo
