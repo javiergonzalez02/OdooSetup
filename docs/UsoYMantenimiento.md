@@ -63,32 +63,46 @@ Una vez establecido el entorno para Docker, utiliza los siguientes comandos:
 
 Si deseas usar la base de datos con el set up inicial, sigue estos pasos:
 
-1. **Entrar al contenedor de la base de datos:**
+1. **Restaurar carpeta filestore:**
+
+  >**IMPORTANTE:** Si estás utilizando Vagrant, realiza este paso antes de levantar los contenedores. Si ya los tienes levantados ejecuta el comando `docker compose down -v`. Cuando finalices de copiar la carpeta, ya podrás levantar los contenedores con `docker compose up -d`
+
+   - Comando para Unix:
+    ```bash
+    cp -r ./ODOO_INITIAL_SETUP ./ODOO
+    ```
+
+   - Comando para Windows:
+    ```bash
+    xcopy ".\ODOO_INITIAL_SETUP" ".\ODOO" /E /I
+    ```
+
+2. **Entrar al contenedor de la base de datos:**
    ```bash
    docker compose exec db bash
    ```
 
-2. **Crear una nueva base de datos vacía:**
+3. **Crear una nueva base de datos vacía:**
    ```bash
    createdb -U odoo -O odoo odoo
    ```
 
-3. **Salir del contenedor:**
+4. **Salir del contenedor:**
    ```bash
    exit
    ```
 
-4. **Obtener el ID del contenedor de la base de datos:**
+5. **Obtener el ID del contenedor de la base de datos:**
    ```bash
    docker ps
    ```
 
-5. **Copiar el archivo de respaldo al contenedor:**
+6. **Copiar el archivo de respaldo al contenedor:**
    ```bash
    docker cp ./initial_setup.sql <ID_CONTENEDOR>:/ 
    ```
 
-6. **Restaurar la copia de seguridad:**
+7. **Restaurar la copia de seguridad:**
    - Vuelve a entrar al contenedor:
      ```bash
      docker compose exec db bash
@@ -103,18 +117,6 @@ Si deseas usar la base de datos con el set up inicial, sigue estos pasos:
      ```bash
      exit
      ```
-
-7. **Restaurar carpeta filestore:**
-
-   - Comando para Unix:
-    ```bash
-    cp -r ./ODOO_INITIAL_SETUP ./ODOO
-    ```
-
-   - Comando para Windows:
-    ```bash
-    xcopy ".\ODOO_INITIAL_SETUP" ".\ODOO" /E /I
-    ```
 
 > **Imagen:** Ejemplo de importación de base de datos  
 > ![Ejemplo Importación Base de Datos](ejemploImportacionDb.png)
