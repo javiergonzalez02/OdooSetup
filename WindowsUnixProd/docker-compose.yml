@@ -10,7 +10,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./ODOO/data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
   odoo:
     image: odoo:16
     container_name: odoo
@@ -26,3 +26,5 @@ services:
       - ./ODOO/sessions:/var/lib/odoo/sessions
     depends_on:
       - db
+volumes:
+  db_data:
