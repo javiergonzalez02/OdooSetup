@@ -1,0 +1,34 @@
+#version: '3'
+services:
+  db:
+    image: postgres:14
+    container_name: db
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile.odoo
+    container_name: odoo
+    environment:
+      - HOST=${HOST}
+      - USER=${DB_USER}
+      - PASSWORD=${DB_PASSWORD}
+    ports:
+      - '8069:8069'
+      - '5678:5678'
+    volumes:
+      - ./ODOO/addons:/mnt/extra-addons
+      - ./ODOO/filestore:/var/lib/odoo/filestore
+      - ./ODOO/sessions:/var/lib/odoo/sessions
+    depends_on:
+      - db
+    command: python3 -m debugpy --listen 0.0.0.0:5678 --wait-for-client /usr/bin/odoo --dev=all --db_host=db --db_password=1234
+volumes:
+  db_data:
