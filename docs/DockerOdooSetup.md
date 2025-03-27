@@ -2,16 +2,16 @@
 
 Esta guía te muestra cómo instalar el entorno de Docker en distintos sistemas operativos sin utilizar Vagrant. Dependiendo de tu objetivo, utiliza una de las siguientes carpetas:
 
-- **Desarrollo:** `./WindowsUnixDev`
-- **Producción:** `./WindowsUnixProd`
+- **Desarrollo:** `./Dev`
+- **Producción:** `./Prod`
 
 ---
 
 ## 1. Selecciona el Entorno
 
 Navega a la carpeta correspondiente según el uso que le darás:
-- Para **desarrollo**, utiliza `./WindowsUnixDev`.
-- Para **producción**, utiliza `./WindowsUnixProd`.
+- Para **desarrollo**, utiliza `./Dev`.
+- Para **producción**, utiliza `./Prod`.
 
 ---
 
