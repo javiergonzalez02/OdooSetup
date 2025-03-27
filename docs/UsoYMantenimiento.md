@@ -199,9 +199,9 @@ Y comenta o elimina la siguiente línea:
 command: --dev=all
 ```
 
-2. Luego, teniendo la carpeta `.vscode` de la carpeta `DevVisualStudioDebug` en la raiz del proyecto de VsCode para que sea detectado automáticamente. Selecciona:
+2. Luego, teniendo la carpeta `.vscode` de la carpeta `Dev` en la raiz del proyecto de VsCode para que sea detectado automáticamente. Selecciona:
 
-(Nota) Es recomendable copiar la carpeta DevVisualStudioDebug en otro directorio y utilizarlo de manera independiente a este proyecto para mejor experiencia de uso.
+(Nota) Es recomendable copiar la carpeta Dev en otro directorio y utilizarlo de manera independiente a este proyecto para mejor experiencia de uso.
 
 `Run > Start Debugging`
 
