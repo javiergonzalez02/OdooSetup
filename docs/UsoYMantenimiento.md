@@ -6,8 +6,9 @@
 3. [Restauración de la base de datos inicial](#3-restauración-de-la-base-de-datos-inicial)
 4. [Acceso a la interfaz de Odoo](#4-acceso-a-la-interfaz-de-odoo)
 5. [Uso de la aplicación](#5-uso-de-la-aplicación)
-6. [Copia de seguridad de la base de datos](#6-copia-de-seguridad-de-la-base-de-datos)
-7. [Extraer código de los módulos descargados para desarrollo](#7-extraer-código-de-los-módulos-descargados-para-desarrollo)
+6. [Debug con Vs Code](#6-debug-en-vscode)
+7. [Copia de seguridad de la base de datos](#6-copia-de-seguridad-de-la-base-de-datos)
+8. [Extraer código de los módulos descargados para desarrollo](#7-extraer-código-de-los-módulos-descargados-para-desarrollo)
 ---
 
 ## 1. Crear el archivo .env
@@ -40,6 +41,12 @@ Una vez establecido el entorno para Docker, utiliza los siguientes comandos:
 - **Levantar los contenedores en segundo plano (sin logs):**
   ```bash
   docker compose up -d
+  ```
+
+- **Levantar los contenedores en segundo plano (sin logs) EN MODO DESARROLLO:**
+NOTA: Es importante que, si se cambia algo del Dockerfile, se use este comando para reconstruir la imagen
+  ```bash
+  docker compose up -d --build
   ```
   
 - **Ver logs de los contenedores:**
@@ -163,11 +170,54 @@ Una vez dentro de la app, encontrarás la siguiente interfaz:
 
 ---
 
-## 6. Copia de seguridad de la base de datos
+## 6. Debug en VsCode
+
+Para realizar Debug del código en VsCode, sigue estos pasos:
+
+Puntos a tener en cuenta antes de comenzar: 
+
+- El docker-compose.yml del set up de producción no está preparado para este fin, solo el docker-compose.yml de la versión de desarrollo.
+- Tanto Vagrant como Docker solamente son compatibles con este debug
+- Si utilizas el Debug, la interfaz de Odoo no se mostrará hasta que completes el 3er paso de este tutorial.
+- Si en algún momento quieres dejar de hacer debug. Deshaz el contenedor con `docker compose down odoo -v` y vuelve a levantarlo con `docker compose up -d --build`
+
+1. En tu archivo docker-compose.yml:
+
+Descomenta las siguientes líneas:
+
+```bash
+#  - '5678:5678'
+```
+
+```bash
+# command: python3 -m debugpy --listen 0.0.0.0:5678 --wait-for-client /usr/bin/odoo --dev=all --db_host=${HOST} --db_password=${DB_PASSWORD}
+```
+
+Y comenta o elimina la siguiente línea:
+
+```bash
+command: --dev=all
+```
+
+2. Luego, teniendo la carpeta `.vscode` de la carpeta `DevVisualStudioDebug` en la raiz del proyecto de VsCode para que sea detectado automáticamente. Selecciona:
+
+(Nota) Es recomendable copiar la carpeta DevVisualStudioDebug en otro directorio y utilizarlo de manera independiente a este proyecto para mejor experiencia de uso.
+
+`Run > Start Debugging`
+
+3. Al seleccionar lo anterior, verás la siguiente pantalla:
+
+![Imagen Debug](./debugOdooVsCode.png)
+
+Pulsa el botón verde para comenzar. Una vez lo hagas, podrás comenzar con el debug como en cualquier otro IDE usando break points.
+
+---
+
+## 7. Copia de seguridad de la base de datos
 
 Sigue estos pasos para realizar una copia de seguridad:
 
-### 6.1 Crear la copia de seguridad con `pg_dump`
+### 7.1 Crear la copia de seguridad con `pg_dump`
 
 1. Conéctate al contenedor de la base de datos:
    ```bash
@@ -194,7 +244,7 @@ Sigue estos pasos para realizar una copia de seguridad:
    exit
    ```
 
-### 6.2 Copiar el archivo de copia de seguridad a la máquina anfitriona
+### 7.2 Copiar el archivo de copia de seguridad a la máquina anfitriona
 
 Utiliza el siguiente comando (reemplaza `./ruta/` con la ruta donde desees guardar el archivo):
 ```bash
@@ -214,7 +264,7 @@ cp -r ./ODOO/filestore/ ./ODOO_BACKUP/filestore/
 xcopy ".\ODOO\filestore" ".\ODOO_BACKUP\filestore" /E /I
 ```
 
-## 7. Extraer código de los módulos para desarrollo
+## 8. Extraer código de los módulos para desarrollo
 
 Para poder obtener el código de los modulos oficiales, se debe ejecutar el siguiente comando en el host. La única función que tiene esto es para que, en caso de que se vaya a ampliar un módulo, entender su funcionamiento.
 

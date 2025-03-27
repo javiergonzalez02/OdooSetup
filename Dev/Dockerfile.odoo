@@ -1,0 +1,3 @@
+FROM odoo:16
+RUN pip install debugpy
+RUN mkdir -p /var/lib/odoo/sessions && chown -R odoo:odoo /var/lib/odoo/sessions

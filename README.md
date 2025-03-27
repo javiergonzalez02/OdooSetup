@@ -14,7 +14,7 @@ Aquí encontrarás toda la documentación necesaria para:
 - [Primeros pasos](#primeros-pasos)
 - [Instalación con Vagrant](#instalación-con-vagrant)
 - [Instalación con Docker](#instalación-con-docker)
-- [Uso Básico y Mantenimiento](#uso-básico-y-mantenimiento)
+- [Uso Básico, Debug y Mantenimiento](#uso-básico-y-mantenimiento)
 - [Desarrollo de Módulos de Odoo](#desarrollo-de-módulos-de-odoo)
 
 ---
@@ -58,9 +58,9 @@ Para obtener la guía detallada, revisa:
 
 ---
 
-## Uso Básico y Mantenimiento
+## Uso Básico, Debug y Mantenimiento
 
-Esta sección explica cómo utilizar Odoo y realizar tareas de mantenimiento, incluyendo la realización de copias de seguridad.
+Esta sección explica cómo utilizar Odoo, hacer debug con VsCode y realizar tareas de mantenimiento, incluyendo la realización de copias de seguridad.
 
 Consulta la guía completa en:
 [VER EXPLICACIÓN](./docs/UsoYMantenimiento.md)
