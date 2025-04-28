@@ -43,6 +43,16 @@ Navega a la carpeta correspondiente según el uso que le darás:
   En Linux se recomienda instalar Docker Engine. Sigue la guía oficial y selecciona la instrucción correspondiente a la distribución de Linux que estés utilizando:  
   [Guía de instalación de Docker Engine](https://docs.docker.com/engine/install/)
 
+- **NOTA: después de instalar docker, es posible que debas añadir tu usuario al grupo de docker para obtener los permisos necesarios para ejecutarlo. Ejemplo UBUNTU:**
+
+  ```bash
+  sudo usermod -aG docker $USER
+  ```
+
+  ```bash
+  newgrp docker
+  ```
+
 ---
 
 ## 3. Uso y Mantenimiento
