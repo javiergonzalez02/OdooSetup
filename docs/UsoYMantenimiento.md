@@ -43,6 +43,16 @@ Una vez establecido el entorno para Docker, utiliza los siguientes comandos:
   docker compose up -d
   ```
 
+- **¡¡IMPORTANTE (LINUX)!! En caso de que al levantar los contenedores el navegador no muestre la interfaz por fallo de permisos en las carpetas, se han de correr los siguientes comandos:**
+
+  ```bash
+  sudo chown -R 101:101 ./ODOO/
+  ```
+
+  ```bash
+  sudo chmod -R u+rwX ./ODOO/
+  ```
+
 - **Levantar los contenedores en segundo plano (sin logs) EN MODO DESARROLLO:**
 NOTA: Es importante que, si se cambia algo del Dockerfile, se use este comando para reconstruir la imagen
   ```bash
