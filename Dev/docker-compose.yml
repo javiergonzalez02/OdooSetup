@@ -22,10 +22,12 @@ services:
       - PASSWORD=${DB_PASSWORD}
     ports:
       - '8069:8069'
+      - '8072:8072'
     #  - '5678:5678'
     volumes:
       - ./ODOO/addons:/mnt/extra-addons
       - ./ODOO/filestore:/var/lib/odoo/filestore
+      - ./ODOO/sessions:/var/lib/odoo/sessions
     depends_on:
       - db
     # command: python3 -m debugpy --listen 0.0.0.0:5678 --wait-for-client /usr/bin/odoo --dev=all --db_host=${HOST} --db_password=${DB_PASSWORD}

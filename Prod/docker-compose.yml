@@ -20,9 +20,11 @@ services:
       - PASSWORD=${DB_PASSWORD}
     ports:
       - '8069:8069'
+      - '8072:8072'
     volumes:
       - ./ODOO/addons:/mnt/extra-addons
       - ./ODOO/filestore:/var/lib/odoo/filestore
+      - ./ODOO/sessions:/var/lib/odoo/sessions
     depends_on:
       - db
     command: odoo --workers=5 # Óptimo cálculo de workers: (CPU cores × 2) + 1
