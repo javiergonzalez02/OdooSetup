@@ -23,7 +23,6 @@ services:
     volumes:
       - ./ODOO/addons:/mnt/extra-addons
       - ./ODOO/filestore:/var/lib/odoo/filestore
-      - ./ODOO/sessions:/var/lib/odoo/sessions
     depends_on:
       - db
     command: odoo --workers=5 # Óptimo cálculo de workers: (CPU cores × 2) + 1
