@@ -1,0 +1,41 @@
+#version: '3'
+services:
+  db:
+    image: postgres:14
+    container_name: db
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  odoo:
+    image: odoo:16
+    container_name: odoo
+    environment:
+      - HOST=${HOST}
+      - USER=${DB_USER}
+      - PASSWORD=${DB_PASSWORD}
+    expose:
+      - '8069'
+      - '8072'
+    volumes:
+      - ./ODOO/addons:/mnt/extra-addons
+      - ./ODOO/filestore:/var/lib/odoo/filestore
+      - ./ODOO/sessions:/var/lib/odoo/sessions
+    depends_on:
+      - db
+    command: odoo --workers=5 --proxy-mode # Óptimo cálculo de workers: (CPU cores × 2) + 1
+  nginx:
+    image: nginx:1.26-alpine
+    container_name: nginx
+    ports:
+      - "8169:8169"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:ro
+    depends_on:
+      - odoo
+volumes:
+  db_data:
