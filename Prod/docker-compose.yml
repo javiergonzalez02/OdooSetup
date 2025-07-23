@@ -12,7 +12,11 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
   odoo:
-    image: odoo:16
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile.odoo
     container_name: odoo
     environment:
       - HOST=${HOST}
