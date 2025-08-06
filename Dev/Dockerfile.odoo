@@ -1,3 +1,3 @@
 FROM odoo:16
-RUN pip install debugpy
+RUN pip install debugpy pyjwt pandas openpyxl "xlrd>=2.0.1"
 RUN mkdir -p /var/lib/odoo/sessions && chown -R odoo:odoo /var/lib/odoo/sessions
